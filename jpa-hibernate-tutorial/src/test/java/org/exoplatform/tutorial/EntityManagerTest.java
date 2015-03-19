@@ -50,9 +50,7 @@ public class EntityManagerTest extends TestCase {
 
         // Get Task and display them
         entityManager = entityManagerFactory.createEntityManager();
-        //Start transaction
-        entityManager.getTransaction().begin();
-        //Queris all tasks from DB
+        //Queries all tasks from DB
         List<Task> result = entityManager.createQuery( "from Task", Task.class ).getResultList();
 
         System.out.println("########################################################");
@@ -69,9 +67,6 @@ public class EntityManagerTest extends TestCase {
         System.out.println("");
         System.out.println("########################################################");
 
-        //commit
-        entityManager.getTransaction().commit();
-        //Close Transaction
         entityManager.close();
     }
 }

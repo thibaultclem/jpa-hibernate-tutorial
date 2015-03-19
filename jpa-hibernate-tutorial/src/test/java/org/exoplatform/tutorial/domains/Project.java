@@ -45,8 +45,7 @@ public class Project {
 
     public Project() {}
 
-    public Project(long id, String name) {
-        this.id = id;
+    public Project(String name) {
         this.name = name;
     }
 

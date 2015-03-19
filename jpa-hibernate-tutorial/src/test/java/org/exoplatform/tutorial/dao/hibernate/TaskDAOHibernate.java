@@ -14,52 +14,29 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program. If not, see http://www.gnu.org/licenses/ .
 */
-package org.exoplatform.tutorial.domains;
+package org.exoplatform.tutorial.dao.hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.Set;
+import org.exoplatform.tutorial.dao.TaskDAO;
+import org.exoplatform.tutorial.domains.Task;
+
+import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  * Created by The eXo Platform SAS
  * Author : Thibault Clement
  * tclement@exoplatform.com
- * 3/18/15
+ * 3/19/15
  */
-@Entity
-public class Tag {
+public class TaskDAOHibernate extends GenericDAOHibernate<Task, Long> implements TaskDAO {
 
-    @Id
-    @GeneratedValue
-    private long id;
-
-    private String name;
-
-    @ManyToMany(mappedBy = "tags")
-    private Set<Task> tasks;
-
-    public Tag() {
+    public TaskDAOHibernate(EntityManager em) {
+        super(em);
     }
 
-    public Tag(String name) {
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public List<Task> findByProjectId(Long projectId) {
+        return null;
     }
 }
+
