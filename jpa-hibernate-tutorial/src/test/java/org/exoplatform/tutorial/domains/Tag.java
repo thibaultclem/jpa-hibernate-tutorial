@@ -16,6 +16,10 @@
 */
 package org.exoplatform.tutorial.domains;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.Set;
 
 /**
@@ -24,13 +28,16 @@ import java.util.Set;
  * tclement@exoplatform.com
  * 3/18/15
  */
-
+@Entity
 public class Tag {
 
+    @Id
+    @GeneratedValue
     private long id;
 
     private String name;
 
+    @ManyToMany(mappedBy = "tags")
     private Set<Task> tasks;
 
     public Tag() {
@@ -57,4 +64,3 @@ public class Tag {
         this.name = name;
     }
 }
-

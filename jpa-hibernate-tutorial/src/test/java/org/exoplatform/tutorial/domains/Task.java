@@ -16,6 +16,7 @@
 */
 package org.exoplatform.tutorial.domains;
 
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -24,16 +25,25 @@ import java.util.Set;
  * tclement@exoplatform.com
  * 3/18/15
  */
-
+@Entity
 public class Task {
 
+    @Id
+    @GeneratedValue
     private long id;
 
     private String title;
     private String description;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "TASK_TASKTAG",
+            joinColumns = {@JoinColumn(name = "TASK_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "TAG_ID", referencedColumnName = "ID")}
+    )
     private Set<Tag> tags;
 
+    @ManyToOne
     private Project project;
 
     public Task() {

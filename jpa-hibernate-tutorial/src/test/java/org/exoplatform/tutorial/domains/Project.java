@@ -16,8 +16,13 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
+
 package org.exoplatform.tutorial.domains;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
 /**
@@ -26,13 +31,16 @@ import java.util.Set;
  * tclement@exoplatform.com
  * 3/18/15
  */
-
+@Entity
 public class Project {
 
+    @Id
+    @GeneratedValue
     private long id;
 
     private String name;
 
+    @OneToMany(mappedBy = "project")
     private Set<Task> tasks;
 
     public Project() {}
